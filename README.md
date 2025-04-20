@@ -26,7 +26,7 @@
 
 dataset sources
 
-`testimages` from https://testimages.org/ SAMPLING_16BIT_RGB_2400x2400
+`testimages` from https://testimages.org/ SAMPLING_8BIT_RGB_2400x2400
 
 `kodak` from https://r0k.us/graphics/kodak/
 
@@ -35,3 +35,5 @@ dataset sources
 `clic` from https://clic2024.compression.cc/tasks/#image validation set
 
 `emojis` from https://github.com/googlefonts/noto-emoji
+
+`medical` from https://bbbc.broadinstitute.org/BBBC038

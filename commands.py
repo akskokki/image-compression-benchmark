@@ -22,6 +22,13 @@ def avif_encode(dataset_folder, image_name):
         f"{dataset_folder}/avif/{image_name}.avif",
     ]
 
+def avif_decode(dataset_folder, image_name):
+    return [
+        "avifdec",
+        "-i",
+        f"{dataset_folder}/avif/{image_name}.avif",
+    ]
+
 def jxl_encode(dataset_folder, image_name):
     return [
         "cjxl",
@@ -38,10 +45,17 @@ def jxl_decode(dataset_folder, image_name):
 
 def png_encode(dataset_folder, image_name):
     return [
-        "zopflipng",
+        "convert",
         f"{dataset_folder}/{image_name}.png",
-        f"{dataset_folder}/png/{image_name}.png",
+        f"{dataset_folder}/png/{image_name}.png"
     ]
+
+# def png_encode(dataset_folder, image_name):
+#     return [
+#         "zopflipng",
+#         f"{dataset_folder}/{image_name}.png",
+#         f"{dataset_folder}/png/{image_name}.png",
+#     ]
 
 def png_decode(dataset_folder, image_name):
     return [

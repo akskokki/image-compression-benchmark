@@ -54,6 +54,8 @@ def main():
     fieldnames = ["format", "operation", "dataset", "time", "size"]
     write_header = not os.path.exists(log_file)
 
+    print(f"Beginning benchmarks on {dataset_name}")
+
     with open(log_file, "a", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         if write_header:
@@ -70,7 +72,9 @@ def main():
 
             total_time = 0.0
 
-            i = 0
+            progress_counter = 0
+            progress_milestone = round(len(image_names) / 10)
+
             for image_name in image_names:
                 if op == "decode":
                     # Ensure image is cached for more consistent decoding benchmarks
@@ -78,9 +82,14 @@ def main():
                 t = time_command(cmd(dataset_folder, image_name))
                 total_time += t
 
-                i += 1
-                if (i%100 == 0): print(i)
-                
+                progress_counter += 1
+                if (progress_counter % progress_milestone == 0):
+                    print(
+                        f"\r{fmt} {op} {total_time:.4f} ({progress_counter} / {len(image_names)})",
+                        end="",
+                        flush=True
+                    )
+
             writer.writerow({
                 "format": fmt,
                 "operation": op,
@@ -89,7 +98,7 @@ def main():
                 "size": sum(os.path.getsize(f) for f in os.scandir(format_path))
             })
 
-            print(fmt, op, total_time)
+            print(f"\r{fmt} {op} {total_time:.4f}{20*' '}")
 
 
 if __name__ == "__main__":

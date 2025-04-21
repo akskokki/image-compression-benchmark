@@ -20,6 +20,8 @@ to re-encode the images in the different formats and log the results. The newly 
 
 You can see the raw data in `results.csv`, or view the aggregated averages from multiple tests in `results_formatted.ods`. Do note that you will have to edit this spreadsheet in order to have it correctly linked to the data on your file system and use the names of the datasets you're using.
 
+`dataset_sample.py` is a helper script you can use to create a smaller sample of images from a larger dataset. It can be called with three arguments: dataset name, new dataset name, and sample size. This can be useful if the original dataset in its entirety is too large to run through in a reasonable amount of time. 
+
 ## Packages for encoding/decoding
 
 - `libwebp` for WebP
